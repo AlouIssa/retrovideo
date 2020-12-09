@@ -1,0 +1,70 @@
+body {
+	font-family: sans-serif;
+}
+dd,dt {
+	margin-left: 0;
+}
+
+.genres li {
+	float: left;
+	padding-right: 0.5em;
+	list-style-type: none;
+}
+
+dt {
+	margin-top: 0.5em;
+}
+
+dd {
+	font-weight: bold;
+}
+
+label span, .fout {
+	background-color: whitesmoke;
+	border-bottom-right-radius: 0.5em;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	border: 3px solid orange;
+	margin-left: 12em;
+	padding: 0.5em;
+	color: black;
+}
+
+input {
+	display: block;
+	margin-top: 0.2em;
+	margin-bottom: 1em;
+	font-size: 1.1em;
+}
+
+input:focus,textarea:focus,select:focus {
+	background-color: #FFFFD6
+}
+
+table td {
+	border: 1px solid gray;
+}
+table th{
+	border: 1px solid white;
+}
+table {
+	border-collapse: collapse;
+}
+
+table.mand th{
+	padding-top: 6%;
+	padding-bottom: 6%;
+	background-color: #777777;
+	color: white;
+}
+table.mand td{
+	background-color: lightgrey;
+	color: black;
+}
+table.klant tr:nth-child(even) {
+	background-color: lightgrey;
+}
+table.klant th {
+	background-color: #777777;
+	color: white;
+}

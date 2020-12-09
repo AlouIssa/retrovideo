@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Rapport')"></head>
+<body>
+<a th:href="@{/}">Genres</a>
+
+<h1>Rapport</h1>
+
+<span th:if="${ontbrekend.isEmpty()} and ${gereserveerd}">De reservatie is OK</span>
+<span th:if="not${ontbrekend.isEmpty()} and ${gereserveerd}" >Niet alles kon gereserveerd worden.</span>
+<br><br>
+<span th:if="not${ontbrekend.isEmpty()}">Film(s) niet in voorraad :</span>
+<ul th:if="${ontbrekend}">
+    <li th:each="id:${ontbrekend}" th:text="${id.titel}"></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title=${film.titel})"></head>
+
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer></script>
+<a th:href="@{/}">Genres</a>
+<h1 th:text="${film.titel}"></h1>
+<img th:src="@{/images/{buffer}.jpg (buffer=${film.id})}" th:alt="${film.titel}">
+
+<div th:object="${film}" >
+<dl>
+    <dt>Prijs</dt>
+    <dd th:text="|€ *{prijs}|"></dd>
+    <dt>Voorraad</dt>
+    <dd th:text="*{voorraad}"></dd>
+    <dt>Gereserveerd</dt>
+    <dd th:text="*{gereserveerd}"></dd>
+    <dt>Beschikbaar</dt>
+    <dd th:text="*{voorraad} - *{gereserveerd}>0?*{voorraad} - *{gereserveerd}:0"></dd>
+</dl>
+<!--Als je de th:if weglaat en de knop "in mandje" altijd laat werken dan zal hij de lijst
+kunnen tonen van de films die niet konden gehuurd worden door niet in voorraad te zijn-->
+<form th:action="@{/mandje/{id}(id=*{id})}" method="post" >
+    <button th:if="*{voorraad}>0" >In mandje</button>
+</form>
+</div>
+
+</body>
+</html>

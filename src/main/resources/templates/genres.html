@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Retro video')"></head>
+
+<body>
+<a th:href="@{/}">Genres</a>
+<h1>Genres</h1>
+
+<ul class="genres" th:each="genre:${genres}">
+    <li><a th:href="@{/{id}(id=${genre.id})}" th:text="${genre.naam}"></a></li>
+</ul>
+<br>
+
+<h2 th:text="${genreNaam}"></h2>
+
+<span th:if="not${filmList} and ${genreNaam}"> Geen films beschikbaar van deze genre</span>
+
+<form th:action="@{/film}" method="post">
+    <button th:each="film:${filmList}" name="id" th:object="${film}" th:value="*{id}">
+        <img th:src="@{/images/{buffer}.jpg (buffer=${film.id})}" th:alt="${film.titel}">
+    </button>
+</form>
+
+
+</body>
+</html>

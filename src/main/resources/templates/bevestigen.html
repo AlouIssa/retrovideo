@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Bevestigen')"></head>
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer></script>
+<a th:href="@{/}">Genres</a>        <a th:href="@{/mandje}">Mandje</a>      <a th:href="@{/klant/form}">Klant</a>
+
+<h1>Bevestigen</h1>
+
+<div>
+    <span th:text="${aantal}"></span> film(s) voor
+    <span th:object="${klant}" th:text="|*{voornaam} *{familienaam}|"></span>
+</div>
+
+<!--Als je geen film hebt gekozen, kan je niet bevestigen-->
+<form method="post" th:action="@{/klant/{id}/rapport/(id=*{id})}" >
+    <button th:if="${aantal}" >Bevestigen</button>
+</form>
+
+
+</body>
+</html>

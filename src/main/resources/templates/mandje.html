@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Mandje')"></head>
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer></script>
+<a th:href="@{/}">Genres</a>    <a th:href="@{/mandje}">Mandje</a>     <a th:href="@{/klant/form}">Klant</a>
+
+<h1>Mandje</h1>
+
+<form th:action="@{/mandje/verwijderen}" method="post">
+<table class="mand" th:if="not${mandje.isEmpty()}">
+    <tr> <th align="left">Film</th>      <th>Prijs</th>      <th><button>Verwijderen</button></th> </tr>
+    <tr th:each="film:${mandje}" th:object="${film}" >
+        <td th:text="*{titel}"></td>
+        <td th:text="|€ *{prijs}|"></td>
+        <td align="center"> <input type="checkbox" name="id" th:value="*{id}"> </td>
+    </tr>
+    <tr> <td>Totaal</td> <td th:text="|€ ${totaal}|"></td> <td></td></tr>
+</table>
+</form>
+
+<div th:if="${mandje.isEmpty()}">Je mandje is leeg.</div>
+
+</body>
+</html>

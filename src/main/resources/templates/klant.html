@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Klant')"></head>
+
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer></script>
+<a th:href="@{/}">Genres</a>        <a th:href="@{/mandje}">Mandje</a>      <a th:href="@{/klant/form}">Klant</a>
+<h1>Klanten</h1>
+
+<span>Familienaam bevat: </span>
+<form th:object="${familieNaamForm}" method="get" th:action="@{/klant}">
+    <label><span th:errors="*{familieNaamInput}"></span>
+        <!--   De input wordt op client- en server sided niveau gevalideerd / gecontroleerd    -->
+        <input th:field="*{familieNaamInput}" autofocus required type="text"> </label>
+    <button>Zoeken</button>
+</form>
+<br><br>
+
+<div th:if="${klanten}">
+    <table class="klant" th:if="not${klanten.isEmpty()}">
+        <tr> <th align="left">Naam</th>      <th>Straat - Huisnummer</th>  <th>Postcode</th> <th>Gemeente</th> </tr>
+        <tr th:each="klant:${klanten}" th:object="${klant}">
+            <td><a th:text="|*{voornaam} *{familienaam}|" th:href="@{/klant/{id}/bevestigen/(id=*{id})}"></a></td>
+            <td th:text="*{straatNummer}"></td>
+            <td th:text="*{postcode}"></td>
+            <td th:text="*{gemeente}"></td>
+        </tr>
+    </table>
+    <div th:if="${klanten.isEmpty()}"> Geen klanten volgens uw zoekopdracht.</div>
+</div>
+
+
+
+
+
+</body>
+</html>
